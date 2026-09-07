@@ -1,0 +1,866 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ورود | مدرسه شریعتی</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Tahoma,Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+
+    background:
+        radial-gradient(circle at 15% 20%,rgba(37,99,235,.22),transparent 30%),
+        radial-gradient(circle at 85% 80%,rgba(79,70,229,.18),transparent 30%),
+        linear-gradient(135deg,#eef4ff,#f8faff);
+}
+
+.login-box{
+    width:100%;
+    max-width:900px;
+    min-height:560px;
+
+    display:grid;
+    grid-template-columns:1fr 1.1fr;
+
+    overflow:hidden;
+    border-radius:30px;
+
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,.9);
+
+    box-shadow:0 30px 80px rgba(20,40,80,.18);
+}
+
+.school-side{
+    padding:45px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    color:white;
+
+    background:
+        linear-gradient(145deg,#2563eb,#173b7a);
+}
+
+.school-icon{
+    width:85px;
+    height:85px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:25px;
+    margin-bottom:25px;
+
+    font-size:42px;
+
+    background:rgba(255,255,255,.15);
+}
+
+.school-side h1{
+    font-size:32px;
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+.school-side p{
+    color:#dce7ff;
+    line-height:2;
+    font-size:14px;
+}
+
+.info-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:30px;
+}
+
+.info{
+    padding:13px 15px;
+    border-radius:14px;
+    background:rgba(255,255,255,.1);
+    font-size:13px;
+}
+
+.form-side{
+    padding:45px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.form-side h2{
+    color:#172033;
+    font-size:29px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#667085;
+    font-size:13px;
+    line-height:1.8;
+    margin-bottom:22px;
+}
+
+.account-types{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:22px;
+}
+
+.account-type{
+    border:2px solid #e5eaf2;
+    background:#fff;
+    padding:14px 10px;
+    border-radius:14px;
+    cursor:pointer;
+    text-align:center;
+    transition:.3s;
+    color:#475467;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.account-type:hover{
+    border-color:#2563eb;
+}
+
+.account-type.active{
+    color:white;
+    border-color:#2563eb;
+    background:linear-gradient(135deg,#2563eb,#173b7a);
+    box-shadow:0 8px 20px rgba(37,99,235,.2);
+}
+
+.account-type span{
+    display:block;
+    font-size:25px;
+    margin-bottom:6px;
+}
+
+.input-group{
+    margin-bottom:17px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+
+    color:#344054;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.input-group input{
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #dce2ec;
+    outline:none;
+    border-radius:13px;
+
+    background:rgba(255,255,255,.85);
+
+    font-size:14px;
+    color:#172033;
+
+    transition:.3s;
+}
+
+.input-group input:focus{
+    border-color:#2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.1);
+}
+
+.login-btn{
+    width:100%;
+
+    padding:15px;
+    margin-top:5px;
+
+    border:none;
+    border-radius:14px;
+
+    color:white;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:linear-gradient(135deg,#2563eb,#173b7a);
+
+    box-shadow:0 12px 30px rgba(37,99,235,.25);
+
+    transition:.3s;
+}
+
+.login-btn:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 18px 40px rgba(37,99,235,.35);
+}
+
+.message{
+    display:none;
+
+    margin-top:15px;
+    padding:12px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    font-size:13px;
+}
+
+.links{
+    margin-top:20px;
+
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+
+    font-size:13px;
+}
+
+.links a{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+.back{
+    display:block;
+
+    text-align:center;
+
+    margin-top:22px;
+
+    color:#667085;
+    text-decoration:none;
+
+    font-size:13px;
+}
+
+@media(max-width:750px){
+
+    .login-box{
+        grid-template-columns:1fr;
+    }
+
+    .school-side{
+        padding:30px;
+        text-align:center;
+        align-items:center;
+    }
+
+    .school-side h1{
+        font-size:27px;
+    }
+
+    .info-list{
+        width:100%;
+    }
+
+    .form-side{
+        padding:30px 22px;
+    }
+}
+
+@media(max-width:450px){
+
+    body{
+        padding:10px;
+    }
+
+    .school-side{
+        padding:25px 18px;
+    }
+
+    .form-side{
+        padding:25px 18px;
+    }
+
+    .links{
+        flex-direction:column;
+        text-align:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="school-side">
+
+        <div class="school-icon">
+            🏫
+        </div>
+
+        <h1>
+            مدرسه شریعتی
+        </h1>
+
+        <p>
+            به سامانه مدرسه شریعتی خوش آمدید.
+            نوع حساب خود را انتخاب کنید و وارد پنل اختصاصی خود شوید.
+        </p>
+
+        <div class="info-list">
+
+            <div class="info">
+                🎓 پنل اختصاصی دانش‌آموز
+            </div>
+
+            <div class="info">
+                👨‍💼 پنل مدیریت مدرسه
+            </div>
+
+            <div class="info">
+                📚 امکانات آموزشی
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-side">
+
+        <h2>
+            ورود به حساب
+        </h2>
+
+        <p class="subtitle">
+            نوع حساب خود را انتخاب کنید.
+        </p>
+
+
+        <div class="account-types">
+
+    <button
+        type="button"
+        class="account-type active"
+        id="studentType"
+        onclick="selectAccount('student')"
+    >
+        <span>🎓</span>
+        دانش‌آموز
+    </button>
+
+    <button
+        type="button"
+        class="account-type"
+        id="teacherType"
+        onclick="selectAccount('teacher')"
+    >
+        <span>👨‍🏫</span>
+        معلم
+    </button>
+
+    <button
+        type="button"
+        class="account-type"
+        id="adminType"
+        onclick="selectAccount('admin')"
+    >
+        <span>👨‍💼</span>
+        مدیر مدرسه
+    </button>
+
+</div>
+
+
+        <form id="loginForm">
+
+            <div class="input-group">
+
+                <label id="phoneLabel">
+                    شماره موبایل
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    inputmode="tel"
+                    placeholder="09xxxxxxxxx"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    رمز عبور
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="رمز عبور"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="login-btn"
+                id="loginButton"
+            >
+                ورود دانش‌آموز
+            </button>
+
+        </form>
+
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+
+        <div class="links">
+
+            <a
+                href="register.html"
+                id="registerLink"
+            >
+                ثبت‌نام دانش‌آموز
+            </a>
+
+            <a href="#">
+                فراموشی رمز عبور
+            </a>
+
+        </div>
+
+
+        <a
+            href="index.html"
+            class="back"
+        >
+            ← بازگشت به صفحه اصلی
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+const API_URL = "https://schoolshariati-backend.onrender.com";
+
+const loginForm = document.getElementById("loginForm");
+const message = document.getElementById("message");
+
+let selectedRole = "student";
+
+
+/* =========================
+   انتخاب نوع حساب
+========================= */
+
+function selectAccount(role) {
+
+    selectedRole = role;
+
+    document
+        .getElementById("studentType")
+        ?.classList.remove("active");
+
+    document
+        .getElementById("teacherType")
+        ?.classList.remove("active");
+
+    document
+        .getElementById("adminType")
+        ?.classList.remove("active");
+
+    const selectedButton =
+        document.getElementById(role + "Type");
+
+    if (selectedButton) {
+        selectedButton.classList.add("active");
+    }
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+    const registerLink =
+        document.getElementById("registerLink");
+
+    if (role === "student") {
+
+        loginButton.textContent =
+            "ورود دانش‌آموز";
+
+        registerLink.textContent =
+            "ثبت‌نام دانش‌آموز";
+
+    } else if (role === "teacher") {
+
+        loginButton.textContent =
+            "ورود معلم";
+
+        registerLink.textContent =
+            "ثبت‌نام معلم";
+
+    } else if (role === "admin") {
+
+        loginButton.textContent =
+            "ورود مدیر";
+
+        registerLink.textContent =
+            "ثبت‌نام";
+    }
+}
+
+
+/* =========================
+   ورود
+========================= */
+
+loginForm.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const password =
+        document.getElementById("password").value.trim();
+
+
+    if (!phone || !password) {
+
+        showMessage(
+            "شماره موبایل و رمز عبور را وارد کنید.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        "در حال بررسی اطلاعات...",
+        "success"
+    );
+
+
+    try {
+
+        const response = await fetch(
+            API_URL + "/api/login",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    phone: phone,
+                    password: password
+                })
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        if (!response.ok || !data.success) {
+
+            showMessage(
+                data.message ||
+                "شماره موبایل یا رمز عبور اشتباه است.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const user = data.user;
+
+
+        /* =========================
+           بررسی نوع حساب
+        ========================= */
+
+        if (user.role !== selectedRole) {
+
+            let roleName = "حساب انتخاب‌شده";
+
+            if (user.role === "student") {
+                roleName = "دانش‌آموز";
+            }
+
+            if (user.role === "teacher") {
+                roleName = "معلم";
+            }
+
+            if (user.role === "admin") {
+                roleName = "مدیر";
+            }
+
+            showMessage(
+                `این شماره مربوط به حساب ${roleName} است. نوع حساب صحیح را انتخاب کنید.`,
+                "error"
+            );
+
+            return;
+        }
+
+
+        /* =========================
+           اطلاعات عمومی کاربر
+        ========================= */
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(user)
+        );
+
+        localStorage.setItem(
+            "loggedIn",
+            "true"
+        );
+
+
+        /* پاک کردن ورودهای قبلی */
+
+        localStorage.removeItem("studentLoggedIn");
+        localStorage.removeItem("teacherLoggedIn");
+        localStorage.removeItem("adminLoggedIn");
+
+        localStorage.removeItem("currentStudent");
+        localStorage.removeItem("currentTeacher");
+        localStorage.removeItem("currentAdmin");
+
+
+        /* =========================
+           دانش‌آموز
+        ========================= */
+
+        if (user.role === "student") {
+
+            localStorage.setItem(
+                "studentLoggedIn",
+                "true"
+            );
+
+            localStorage.setItem(
+                "currentStudent",
+                JSON.stringify(user)
+            );
+
+            localStorage.setItem(
+                "studentUser",
+                JSON.stringify(user)
+            );
+
+
+            showMessage(
+                "ورود با موفقیت انجام شد ✅",
+                "success"
+            );
+
+
+            setTimeout(function() {
+
+                window.location.assign(
+                    "student.html"
+                );
+
+            }, 700);
+
+            return;
+        }
+
+
+        /* =========================
+           معلم
+        ========================= */
+
+        if (user.role === "teacher") {
+
+            localStorage.setItem(
+                "teacherLoggedIn",
+                "true"
+            );
+
+            localStorage.setItem(
+                "currentTeacher",
+                JSON.stringify(user)
+            );
+
+
+            showMessage(
+                "ورود با موفقیت انجام شد ✅",
+                "success"
+            );
+
+
+            setTimeout(function() {
+
+                window.location.assign(
+                    "teacher-panel.html"
+                );
+
+            }, 700);
+
+            return;
+        }
+
+
+        /* =========================
+           مدیر
+        ========================= */
+
+        if (user.role === "admin") {
+
+            localStorage.setItem(
+                "adminLoggedIn",
+                "true"
+            );
+
+            localStorage.setItem(
+                "adminPhone",
+                user.phone
+            );
+
+            localStorage.setItem(
+                "currentAdmin",
+                JSON.stringify(user)
+            );
+
+
+            showMessage(
+                "ورود با موفقیت انجام شد ✅",
+                "success"
+            );
+
+
+            setTimeout(function() {
+
+                window.location.assign(
+                    "admin-panel.html"
+                );
+
+            }, 700);
+
+            return;
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Login Error:",
+            error
+        );
+
+        showMessage(
+            "اتصال به Backend برقرار نشد. ابتدا server.js را اجرا کنید.",
+            "error"
+        );
+
+    }
+
+});
+
+
+/* =========================
+   پیام
+========================= */
+
+function showMessage(text, type) {
+
+    message.style.display = "block";
+
+    message.innerText = text;
+
+    if (type === "success") {
+
+        message.style.background =
+            "#e8f8ee";
+
+        message.style.color =
+            "#18794e";
+
+    } else {
+
+        message.style.background =
+            "#fff0f0";
+
+        message.style.color =
+            "#c62828";
+    }
+}
+
+
+/* =========================
+   ثبت نام
+========================= */
+
+document
+    .getElementById("registerLink")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            event.preventDefault();
+
+            window.location.assign(
+                "register.html"
+            );
+        }
+    );
+
+
+/* =========================
+   شروع
+========================= */
+
+selectAccount("student");
+
+</script>
+
+</body>
+</html>
+
