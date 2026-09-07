@@ -1145,7 +1145,7 @@ const attendanceDate =
 
                 <div>
                     <strong>
-                    ${item.studentName || "دانش‌آموز #" + item.studentId}
+                    ${escapeHTML(record.studentName || "دانش‌آموز #" + record.studentId)}
                         )}
                     </strong>
                 </div>
