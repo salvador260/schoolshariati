@@ -1,0 +1,553 @@
+```html
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>اطلاعیه‌ها | مدرسه شریعتی</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Tahoma,Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:25px;
+    color:#172033;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(37,99,235,.18),transparent 28%),
+        radial-gradient(circle at 90% 90%,rgba(79,70,229,.15),transparent 28%),
+        linear-gradient(135deg,#eef4ff,#f8faff);
+}
+
+.container{
+    width:100%;
+    max-width:1050px;
+    margin:auto;
+}
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:22px 25px;
+    margin-bottom:30px;
+    border-radius:25px;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(25px);
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:0 20px 60px rgba(20,40,80,.12);
+}
+
+.school{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.school-icon{
+    width:55px;
+    height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:17px;
+    color:white;
+    font-size:27px;
+    background:linear-gradient(135deg,#2563eb,#173b7a);
+}
+
+.school h1{
+    font-size:21px;
+    margin-bottom:5px;
+}
+
+.school p{
+    color:#667085;
+    font-size:12px;
+}
+
+.back{
+    padding:12px 18px;
+    border-radius:13px;
+    text-decoration:none;
+    color:#2563eb;
+    background:#edf3ff;
+    font-size:13px;
+    transition:.3s;
+}
+
+.back:hover{
+    transform:translateY(-2px);
+}
+
+.title{
+    text-align:center;
+    margin:30px 0;
+}
+
+.title h2{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.title p{
+    color:#667085;
+    font-size:13px;
+}
+
+/* کارت اطلاعیه */
+
+.announcements{
+    display:grid;
+    gap:18px;
+}
+
+.announcement{
+    position:relative;
+    padding:25px;
+    border-radius:23px;
+    background:rgba(255,255,255,.76);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.95);
+    box-shadow:0 15px 45px rgba(20,40,80,.09);
+    transition:.3s;
+    overflow:hidden;
+}
+
+.announcement:hover{
+    transform:translateY(-5px);
+    box-shadow:0 25px 55px rgba(20,40,80,.14);
+}
+
+.announcement.important{
+    border-right:5px solid #ef4444;
+}
+
+.announcement.education{
+    border-right:5px solid #2563eb;
+}
+
+.announcement.event{
+    border-right:5px solid #16a34a;
+}
+
+.announcement.parents{
+    border-right:5px solid #9333ea;
+}
+
+.announcement-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.announcement-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.icon{
+    width:48px;
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:14px;
+    background:#edf3ff;
+    font-size:24px;
+}
+
+.announcement h3{
+    font-size:17px;
+}
+
+.date{
+    color:#98a2b3;
+    font-size:11px;
+}
+
+.announcement p{
+    color:#667085;
+    font-size:13px;
+    line-height:2.1;
+}
+
+.tag{
+    display:inline-block;
+    margin-top:15px;
+    padding:6px 11px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.tag-important{
+    color:#b91c1c;
+    background:#fff0f0;
+}
+
+.tag-education{
+    color:#2563eb;
+    background:#edf3ff;
+}
+
+.tag-event{
+    color:#15803d;
+    background:#eaf8ef;
+}
+
+.tag-parents{
+    color:#7e22ce;
+    background:#f5edff;
+}
+
+/* اطلاعیه ویژه */
+
+.featured{
+    margin-bottom:22px;
+    padding:30px;
+    border-radius:25px;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#173b7a);
+    box-shadow:0 20px 50px rgba(37,99,235,.22);
+}
+
+.featured h2{
+    margin-bottom:12px;
+    font-size:21px;
+}
+
+.featured p{
+    color:#dce7ff;
+    line-height:2;
+    font-size:13px;
+}
+
+.footer{
+    text-align:center;
+    padding:30px 10px 10px;
+    color:#667085;
+    font-size:12px;
+}
+
+/* موبایل */
+
+@media(max-width:650px){
+
+    body{
+        padding:12px;
+    }
+
+    .header{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .school{
+        justify-content:center;
+    }
+
+    .back{
+        width:100%;
+        text-align:center;
+    }
+
+    .title h2{
+        font-size:23px;
+    }
+
+    .announcement{
+        padding:20px;
+    }
+
+    .announcement-top{
+        align-items:flex-start;
+    }
+
+    .date{
+        white-space:nowrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- سربرگ -->
+
+    <div class="header">
+
+        <div class="school">
+
+            <div class="school-icon">
+                🏫
+            </div>
+
+            <div>
+                <h1>مدرسه شریعتی</h1>
+                <p>سامانه اطلاع‌رسانی مدرسه</p>
+            </div>
+
+        </div>
+
+        <a href="about.html" class="back">
+            ← بازگشت به پنل
+        </a>
+
+    </div>
+
+
+    <!-- عنوان -->
+
+    <div class="title">
+
+        <h2>
+            📢 اطلاعیه‌های مدرسه
+        </h2>
+
+        <p>
+            آخرین اخبار و اطلاعیه‌های مدرسه شریعتی
+        </p>
+
+    </div>
+
+
+    <!-- اطلاعیه ویژه -->
+
+    <div class="featured">
+
+        <h2>
+            📚 اطلاعیه مهم آموزشی
+        </h2>
+
+        <p>
+            دانش‌آموزان عزیز لطفاً برنامه امتحانات و زمان‌بندی
+            آزمون‌های پایان ترم را از بخش «برنامه امتحانات»
+            بررسی کنند و در زمان مشخص‌شده در مدرسه حضور داشته باشند.
+        </p>
+
+    </div>
+
+
+    <!-- اطلاعیه‌ها -->
+
+    <div class="announcements">
+
+
+        <div class="announcement important">
+
+            <div class="announcement-top">
+
+                <div class="announcement-title">
+
+                    <div class="icon">
+                        ⚠️
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            اطلاعیه مهم مدرسه
+                        </h3>
+
+                        <span class="date">
+                            ۲۰ خرداد ۱۴۰۵
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p>
+                دانش‌آموزان موظف هستند کارت دانش‌آموزی خود را
+                هنگام ورود به مدرسه همراه داشته باشند.
+                لطفاً قوانین مدرسه را رعایت کنید.
+            </p>
+
+            <span class="tag tag-important">
+                مهم
+            </span>
+
+        </div>
+
+
+        <div class="announcement education">
+
+            <div class="announcement-top">
+
+                <div class="announcement-title">
+
+                    <div class="icon">
+                        📝
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            برنامه امتحانات
+                        </h3>
+
+                        <span class="date">
+                            ۱۸ خرداد ۱۴۰۵
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p>
+                برنامه امتحانات پایان ترم در سامانه دانش‌آموزی
+                قرار گرفت. برای مشاهده تاریخ، ساعت و محل برگزاری
+                امتحانات وارد بخش برنامه امتحانات شوید.
+            </p>
+
+            <span class="tag tag-education">
+                آموزشی
+            </span>
+
+        </div>
+
+
+        <div class="announcement event">
+
+            <div class="announcement-top">
+
+                <div class="announcement-title">
+
+                    <div class="icon">
+                        🏆
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            مسابقات ورزشی مدرسه
+                        </h3>
+
+                        <span class="date">
+                            ۱۵ خرداد ۱۴۰۵
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p>
+                مسابقات ورزشی بین کلاس‌ها در هفته آینده برگزار
+                خواهد شد. دانش‌آموزان علاقه‌مند می‌توانند برای
+                ثبت‌نام به معاونت مدرسه مراجعه کنند.
+            </p>
+
+            <span class="tag tag-event">
+                رویداد
+            </span>
+
+        </div>
+
+
+        <div class="announcement parents">
+
+            <div class="announcement-top">
+
+                <div class="announcement-title">
+
+                    <div class="icon">
+                        👨‍👩‍👧
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            جلسه اولیا و مربیان
+                        </h3>
+
+                        <span class="date">
+                            ۱۲ خرداد ۱۴۰۵
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p>
+                جلسه اولیا و مربیان با حضور مدیر، معلمان و والدین
+                دانش‌آموزان برگزار خواهد شد. زمان دقیق جلسه از طریق
+                مدرسه اعلام می‌شود.
+            </p>
+
+            <span class="tag tag-parents">
+                اولیا و مربیان
+            </span>
+
+        </div>
+
+
+        <div class="announcement education">
+
+            <div class="announcement-top">
+
+                <div class="announcement-title">
+
+                    <div class="icon">
+                        📚
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            کتاب‌های درسی
+                        </h3>
+
+                        <span class="date">
+                            ۱۰ خرداد ۱۴۰۵
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p>
+                دانش‌آموزان برای دریافت کتاب‌های درسی و اطلاع از
+                وضعیت تحویل کتاب‌ها می‌توانند به دفتر مدرسه مراجعه کنند.
+            </p>
+
+            <span class="tag tag-education">
+                آموزشی
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        © ۱۴۰۵ مدرسه شریعتی | تمامی حقوق محفوظ است
+    </div>
+
+</div>
+
+</body>
+</html>
+```
