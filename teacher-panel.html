@@ -1,0 +1,3337 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>پنل معلم | مدرسه شریعتی</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Tahoma,Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(37,99,235,.18),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(16,185,129,.15),
+            transparent 25%
+        ),
+        #f4f7fb;
+
+    color:#172033;
+}
+
+header{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(20px);
+
+    border-bottom:1px solid rgba(0,0,0,.06);
+
+    padding:18px 6%;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.07);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    font-size:21px;
+    font-weight:bold;
+    color:#1d4ed8;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #1e40af
+    );
+
+    color:white;
+    font-size:23px;
+}
+
+.logout{
+    border:none;
+    padding:11px 18px;
+
+    border-radius:12px;
+
+    background:#fee2e2;
+    color:#dc2626;
+
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.container{
+    width:92%;
+    max-width:1250px;
+    margin:35px auto;
+}
+
+.welcome{
+    background:linear-gradient(
+        135deg,
+        #1d4ed8,
+        #2563eb,
+        #0ea5e9
+    );
+
+    color:white;
+
+    padding:30px;
+    border-radius:25px;
+
+    box-shadow:0 20px 50px rgba(37,99,235,.25);
+
+    margin-bottom:25px;
+}
+
+.welcome h1{
+    margin-bottom:10px;
+    font-size:28px;
+}
+
+.welcome p{
+    opacity:.9;
+    line-height:2;
+}
+
+.teacher-info{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.info-card{
+    background:white;
+    padding:22px;
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+
+    border:1px solid #edf0f5;
+}
+
+.info-card .icon{
+    font-size:27px;
+    margin-bottom:12px;
+}
+
+.info-card span{
+    display:block;
+    color:#7b8494;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+.info-card strong{
+    font-size:16px;
+}
+
+.menu{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.menu button{
+    border:none;
+    background:white;
+
+    padding:25px 15px;
+    border-radius:20px;
+
+    cursor:pointer;
+
+    font-size:15px;
+    color:#253047;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+
+    transition:.3s;
+}
+
+.menu button:hover{
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 18px 35px rgba(37,99,235,.15);
+
+    color:#2563eb;
+}
+
+.menu-icon{
+    font-size:32px;
+    display:block;
+    margin-bottom:12px;
+}
+
+.panel{
+    background:white;
+    border-radius:25px;
+    padding:25px;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.07);
+
+    margin-bottom:25px;
+}
+
+.panel h2{
+    color:#1e3a8a;
+    margin-bottom:20px;
+}
+
+.search{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.search input{
+    flex:1;
+
+    padding:13px 15px;
+
+    border:1px solid #dce2eb;
+    border-radius:12px;
+
+    outline:none;
+    font-size:14px;
+}
+
+.table-wrapper{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#eff6ff;
+    color:#1e40af;
+
+    padding:14px;
+    text-align:right;
+
+    font-size:13px;
+}
+
+td{
+    padding:14px;
+
+    border-bottom:1px solid #edf0f5;
+
+    font-size:13px;
+}
+
+tr:hover td{
+    background:#fafcff;
+}
+
+.student-check{
+    width:18px;
+    height:18px;
+    cursor:pointer;
+}
+
+.select-all-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-bottom:18px;
+    padding:14px;
+
+    background:#f8fbff;
+
+    border-radius:14px;
+
+    border:1px solid #e5eaf2;
+}
+
+.create-class-box{
+    margin-top:25px;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:#f8fbff;
+
+    border:1px solid #e5eaf2;
+}
+
+.create-class-box h3{
+    margin-bottom:18px;
+    color:#1e3a8a;
+}
+
+.class-form{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.class-form input,
+.class-form select{
+    width:100%;
+
+    padding:13px;
+
+    border:1px solid #dce2eb;
+    border-radius:12px;
+
+    outline:none;
+    background:white;
+}
+
+.save-btn{
+    border:none;
+
+    padding:13px 20px;
+
+    border-radius:12px;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #1e40af
+    );
+
+    color:white;
+
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.message{
+    display:none;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    margin-top:15px;
+
+    text-align:center;
+}
+
+.success{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.error{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.class-card{
+    padding:20px;
+
+    background:#f8fbff;
+
+    border:1px solid #e5eaf2;
+
+    border-radius:18px;
+
+    margin-bottom:12px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.class-card h3{
+    color:#1e3a8a;
+    margin-bottom:6px;
+}
+
+.class-card p{
+    color:#667085;
+    font-size:13px;
+}
+
+.class-card button{
+    border:none;
+
+    background:#dbeafe;
+    color:#1d4ed8;
+
+    padding:9px 14px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:#667085;
+}
+
+.attendance-date-box{
+    background:#eff6ff;
+
+    border:1px solid #bfdbfe;
+
+    color:#1e40af;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    margin-bottom:20px;
+
+    font-weight:bold;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+}
+
+.attendance-date-box button{
+    border:none;
+
+    background:#2563eb;
+    color:white;
+
+    padding:9px 14px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+.selected-class-box{
+    background:#f0fdf4;
+
+    border:1px solid #bbf7d0;
+
+    color:#166534;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    margin-bottom:18px;
+
+    font-weight:bold;
+}
+
+
+.attendance-history-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.attendance-record{
+    background:#f8fbff;
+    border:1px solid #e5eaf2;
+    border-radius:16px;
+    padding:16px;
+    line-height:2;
+}
+
+.attendance-record strong{
+    color:#1e3a8a;
+}
+
+.attendance-status{
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:8px;
+    background:#eff6ff;
+    color:#1e40af;
+    font-weight:bold;
+}
+
+@media(max-width:1000px){
+
+    .teacher-info{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .menu{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .class-form{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .teacher-info{
+        grid-template-columns:1fr;
+    }
+
+    .menu{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .class-form{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🎓
+        </div>
+
+        مدرسه شریعتی
+
+    </div>
+
+    <button
+        class="logout"
+        onclick="logout()"
+    >
+        خروج از پنل
+    </button>
+
+</header>
+
+<main class="container">
+
+<section class="welcome">
+
+    <h1>
+        سلام، به پنل معلم خوش آمدید 👨‍🏫
+    </h1>
+
+    <p id="welcomeText">
+        مدیریت دانش‌آموزان و کلاس‌های شما
+    </p>
+
+</section>
+
+<section class="teacher-info">
+
+    <div class="info-card">
+
+        <div class="icon">
+            👨‍🏫
+        </div>
+
+        <span>
+            نام معلم
+        </span>
+
+        <strong id="teacherName">
+            —
+        </strong>
+
+    </div>
+
+    <div class="info-card">
+
+        <div class="icon">
+            📚
+        </div>
+
+        <span>
+            درس
+        </span>
+
+        <strong id="teacherSubject">
+            —
+        </strong>
+
+    </div>
+
+    <div class="info-card">
+
+        <div class="icon">
+            🏫
+        </div>
+
+        <span>
+            سمت
+        </span>
+
+        <strong>
+            معلم
+        </strong>
+
+    </div>
+
+    <div class="info-card">
+
+        <div class="icon">
+            👨‍🎓
+        </div>
+
+        <span>
+            دانش‌آموزان
+        </span>
+
+        <strong id="studentCount">
+            0 نفر
+        </strong>
+
+    </div>
+
+</section>
+
+<section class="menu">
+
+    <button onclick="showSection('students')">
+
+        <span class="menu-icon">
+            👨‍🎓
+        </span>
+
+        دانش‌آموزان
+
+    </button>
+
+    <button onclick="showSection('createClass')">
+
+        <span class="menu-icon">
+            🏫
+        </span>
+
+        ساخت کلاس
+
+    </button>
+
+    <button onclick="showSection('myClasses')">
+
+        <span class="menu-icon">
+            📚
+        </span>
+
+        کلاس‌های من
+
+    </button>
+
+    <button onclick="openAttendanceFromMenu()">
+
+        <span class="menu-icon">
+            📝
+        </span>
+
+        ثبت نمرات
+
+    </button>
+
+    <button id="attendanceHistoryBtn" onclick="loadAttendanceHistory()">
+
+        <span class="menu-icon">
+            📋
+        </span>
+
+        سوابق حضور و غیاب
+
+    </button>
+
+    <button onclick="openAttendanceFromMenu()">
+
+        <span class="menu-icon">
+            ✅
+        </span>
+
+        حضور و غیاب
+
+    </button>
+
+</section>
+
+
+<!-- مدیریت کلاس -->
+
+<section
+    class="panel"
+    id="classDetails"
+    style="display:none;"
+>
+
+    <h2 id="selectedClassTitle">
+        📚 مدیریت کلاس
+    </h2>
+
+    <div id="classStudentsList">
+        <div class="empty">
+            در حال دریافت دانش‌آموزان...
+        </div>
+    </div>
+
+    <div
+        style="
+            display:flex;
+            gap:12px;
+            flex-wrap:wrap;
+            margin-top:20px;
+        "
+    >
+
+        <button
+            class="save-btn"
+            onclick="openClassGrades()"
+        >
+            📝 ثبت نمرات
+        </button>
+
+        <button
+            class="save-btn"
+            onclick="openClassAttendance()"
+            style="
+                background:linear-gradient(
+                    135deg,
+                    #16a34a,
+                    #15803d
+                );
+            "
+        >
+            ✅ حضور و غیاب
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- دانش‌آموزان -->
+
+<section
+    class="panel"
+    id="students"
+>
+
+    <h2>
+        👨‍🎓 انتخاب دانش‌آموزان
+    </h2>
+
+    <div class="search">
+
+        <input
+            type="text"
+            id="studentSearch"
+            placeholder="جستجو با نام، کد ملی یا شماره..."
+            oninput="searchStudents()"
+        >
+
+    </div>
+
+    <div class="select-all-box">
+
+        <input
+            type="checkbox"
+            id="selectAll"
+            class="student-check"
+            onchange="toggleAllStudents()"
+        >
+
+        <label for="selectAll">
+            انتخاب همه دانش‌آموزان نمایش‌داده‌شده
+        </label>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        انتخاب
+                    </th>
+
+                    <th>
+                        نام
+                    </th>
+
+                    <th>
+                        کد ملی
+                    </th>
+
+                    <th>
+                        شماره
+                    </th>
+
+                    <th>
+                        پایه
+                    </th>
+
+                    <th>
+                        کلاس فعلی
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="studentTable">
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div
+        id="studentMessage"
+        class="message"
+    ></div>
+
+</section>
+
+
+<!-- ساخت کلاس -->
+
+<section
+    class="panel"
+    id="createClass"
+>
+
+    <h2>
+        🏫 ساخت کلاس جدید
+    </h2>
+
+    <div class="create-class-box">
+
+        <h3>
+            اطلاعات کلاس
+        </h3>
+
+        <div class="class-form">
+
+            <input
+                type="text"
+                id="className"
+                placeholder="نام کلاس، مثال: دینی ۱۱ شبکه"
+            >
+
+            <input
+                type="text"
+                id="classGrade"
+                placeholder="پایه، مثال: یازدهم"
+            >
+
+            <input
+                type="text"
+                id="classField"
+                placeholder="رشته، مثال: شبکه"
+            >
+
+            <button
+                class="save-btn"
+                onclick="createClass()"
+            >
+                ➕ ساخت کلاس
+            </button>
+
+        </div>
+
+        <div
+            id="classMessage"
+            class="message"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- کلاس‌های من -->
+
+<section
+    class="panel"
+    id="myClasses"
+>
+
+    <h2>
+        📚 کلاس‌های من
+    </h2>
+
+    <div id="classesList">
+
+        <div class="empty">
+            در حال دریافت کلاس‌ها...
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- نمرات -->
+
+<section
+    class="panel"
+    id="grades"
+    style="display:none;"
+>
+
+    <h2>
+        📝 ثبت نمرات کلاس
+    </h2>
+
+    <div id="gradesClassStudents">
+
+        <div class="empty">
+            ابتدا یک کلاس را از بخش «کلاس‌های من» انتخاب کنید.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- حضور و غیاب -->
+
+<section
+    class="panel"
+    id="attendance"
+    style="display:none;"
+>
+
+    <h2>
+        ✅ حضور و غیاب کلاس
+    </h2>
+
+    <div id="attendanceClassStudents">
+
+        <div class="empty">
+            ابتدا یک کلاس را از بخش «کلاس‌های من» انتخاب کنید.
+        </div>
+
+    </div>
+
+</section>
+<!-- سوابق حضور و غیاب -->
+
+<section
+    class="panel"
+    id="attendanceHistoryPanel"
+    style="display:none;"
+>
+
+    <h2>
+        📋 سوابق حضور و غیاب
+    </h2>
+
+    <div
+        id="attendanceHistory"
+        class="attendance-history-list"
+    >
+        <div class="empty">
+            برای مشاهده سوابق، روی دکمه «سوابق حضور و غیاب» بزنید.
+        </div>
+    </div>
+
+</section>
+
+<!-- صفحه تغییرات حضور و غیاب -->
+
+<section
+    class="panel"
+    id="attendanceChanges"
+    style="display:none;"
+>
+
+    <h2>
+        🔄 تغییرات حضور و غیاب
+    </h2>
+
+    <div
+        id="attendanceChangesContainer"
+    >
+        <div class="empty">
+            در حال دریافت اطلاعات...
+        </div>
+    </div>
+
+</section>
+</main>
+
+
+<script>
+async function loadAttendanceHistory() {
+
+    
+
+    const panel =
+        document.getElementById("attendanceHistoryPanel");
+
+    const container =
+        document.getElementById("attendanceHistory");
+
+    console.log("STEP 1");
+
+    console.log({
+        teacher: teacher,
+        teacherId: teacher?.id,
+        classId: selectedClassId,
+        date: localStorage.getItem("attendanceDate")
+    });
+
+
+    panel.style.display = "block";
+
+    container.innerHTML =
+        '<div class="empty">در حال دریافت سوابق حضور و غیاب...</div>';
+
+    try {
+const rawDate =
+    localStorage.getItem("attendanceDate");
+
+const attendanceDate =
+    rawDate
+        .split("/")
+        .map((x, i) => {
+            if (i === 1 || i === 2) {
+                return String(x).padStart(2, "0");
+            }
+            return x;
+        })
+        .join("/");
+
+     const response = await fetch(
+      API_URL +
+     "/api/teacher/" +
+     teacher.id +
+     "/attendance/history"
+);
+
+        const text = await response.text();
+
+        console.log("SERVER RESPONSE:", text);
+
+        let data;
+
+        try {
+            data = JSON.parse(text);
+        } catch (error) {
+
+            console.error(
+                "Response is not JSON:",
+                text
+            );
+
+            alert(
+                "Backend پاسخ JSON برنگرداند.\n\n" +
+                text.substring(0, 300)
+            );
+
+            return;
+        }
+
+        if (!response.ok || !data.success) {
+
+            throw new Error(
+                data.message ||
+                "دریافت سوابق ناموفق بود."
+            );
+
+        }
+
+        const records =
+            data.records || [];
+
+        if (records.length === 0) {
+
+            container.innerHTML =
+                '<div class="empty">' +
+                'برای این کلاس و تاریخ هنوز حضور و غیابی ثبت نشده است.' +
+                '</div>';
+
+            return;
+        }
+
+        container.innerHTML = "";
+
+        records.forEach(function(record) {
+
+            const statusText = {
+
+                present: "حاضر",
+
+                absent: "غایب",
+
+                late: "تأخیر"
+
+            }[
+                record.status
+            ] || record.status || "—";
+
+
+            const statusClass =
+                record.status === "present"
+                    ? "present"
+                    : record.status === "absent"
+                        ? "absent"
+                        : "late";
+
+
+            const item =
+                document.createElement("div");
+
+
+            item.className =
+                "attendance-record";
+
+
+            item.innerHTML = `
+
+                <div>
+                    <strong>
+                    ${item.studentName || "دانش‌آموز #" + item.studentId}
+                        )}
+                    </strong>
+                </div>
+
+                <div>
+                    🆔 کد ملی:
+                    ${escapeHTML(
+                        record.nationalCode || "—"
+                    )}
+                </div>
+
+                <div>
+                    📅 تاریخ:
+                    ${escapeHTML(
+                        record.attendanceDate || "—"
+                    )}
+                </div>
+
+                <div>
+                    وضعیت:
+                    <span class="attendance-status ${statusClass}">
+                        ${escapeHTML(statusText)}
+                    </span>
+                </div>
+
+            `;
+
+
+            container.appendChild(item);
+
+        });
+
+
+        panel.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+
+    } catch (error) {
+
+        console.error(
+            "Attendance History Error:",
+            error
+        );
+
+        container.innerHTML =
+            '<div class="empty">' +
+            'خطا در دریافت سوابق حضور و غیاب.' +
+            '</div>';
+
+        alert(
+            error.message ||
+            "خطا در دریافت سوابق حضور و غیاب."
+        );
+    }
+}
+const API_URL = "https://schoolshariati-backend.onrender.com";
+
+
+/* ==============================
+   معلم واردشده
+============================== */
+
+const teacher =
+    JSON.parse(
+        localStorage.getItem(
+            "currentTeacher"
+        )
+    );
+
+
+if(!teacher){
+
+    alert(
+        "اطلاعات معلم پیدا نشد. دوباره وارد شوید."
+    );
+
+    window.location.href =
+        "login.html";
+}
+
+
+/* ==============================
+   اطلاعات معلم
+============================== */
+
+if(teacher){
+
+    document.getElementById(
+        "teacherName"
+    ).textContent =
+        teacher.name || "معلم";
+
+
+    document.getElementById(
+        "teacherSubject"
+    ).textContent =
+        teacher.subject || "—";
+
+
+    document.getElementById(
+        "welcomeText"
+    ).textContent =
+        "سلام " +
+        (teacher.name || "معلم") +
+        "؛ از این قسمت می‌توانید کلاس‌های خود را مدیریت کنید.";
+
+}
+async function saveAttendanceChanges() {
+
+    if (!selectedClassId) {
+
+        alert(
+            "ابتدا یک کلاس را انتخاب کنید."
+        );
+
+        return;
+    }
+
+    const attendanceDate =
+        localStorage.getItem(
+            "attendanceDate"
+        );
+
+    if (!attendanceDate) {
+
+        alert(
+            "تاریخ حضور و غیاب مشخص نیست."
+        );
+
+        return;
+    }
+
+    const attendance = [];
+
+    selectedClassStudents.forEach(
+        function(student) {
+
+            const select =
+                document.getElementById(
+                    "change-attendance-" +
+                    student.id
+                );
+
+            if (!select) {
+                return;
+            }
+
+            attendance.push({
+
+                studentId:
+                    student.id,
+
+                nationalCode:
+                    student.nationalCode || "",
+
+                status:
+                    select.value
+
+            });
+
+        }
+    );
+
+    if (attendance.length === 0) {
+
+        alert(
+            "اطلاعات حضور و غیاب پیدا نشد."
+        );
+
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/teacher/attendance",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        teacherId:
+                            teacher.id,
+
+                        classId:
+                            selectedClassId,
+
+                        date:
+                            attendanceDate,
+
+                        attendance:
+                            attendance
+
+                    })
+
+                }
+            );
+
+        const text = await response.text();
+
+console.log("SERVER SAVE ATTENDANCE RESPONSE:", text);
+
+let data;
+
+try {
+    data = JSON.parse(text);
+}
+catch(e){
+    throw new Error(text);
+}
+            
+
+        if (
+            !response.ok ||
+            !data.success
+        ) {
+
+            throw new Error(
+                data.message ||
+                "ذخیره تغییرات ناموفق بود."
+            );
+
+        }
+
+        alert(
+            "تغییرات حضور و غیاب تاریخ " +
+            attendanceDate +
+            " با موفقیت ذخیره شد ✅"
+        );
+
+        // بعد از ذخیره، همچنان در همین صفحه بمان
+        openAttendanceChanges();
+
+    }
+    catch(error) {
+
+        console.error(
+            "Attendance Changes Error:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "خطا در ذخیره تغییرات."
+        );
+
+    }
+}
+
+/* ==============================
+   وضعیت کلاس انتخاب‌شده
+============================== */
+
+let selectedClassId =
+    localStorage.getItem(
+        "selectedTeacherClassId"
+    )
+    ? Number(
+        localStorage.getItem(
+            "selectedTeacherClassId"
+        )
+      )
+    : null;
+
+
+let selectedClassStudents = [];
+
+
+let selectedClassName =
+    localStorage.getItem(
+        "selectedTeacherClassName"
+    ) || "";
+
+
+/* ==============================
+   نمایش بخش
+============================== */
+
+function showSection(id){
+
+    const panels =
+        document.querySelectorAll(
+            ".panel"
+        );
+
+
+    panels.forEach(
+        function(panel){
+
+            panel.style.display =
+                "none";
+
+        }
+    );
+
+
+    const selected =
+        document.getElementById(id);
+
+
+    if(selected){
+
+        selected.style.display =
+            "block";
+
+        selected.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    }
+
+}
+
+
+/* ==============================
+   دانش‌آموزان
+============================== */
+
+let allStudents = [];
+
+
+async function loadStudents(){
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/students"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!data.success){
+
+            throw new Error(
+                "خطا در دریافت دانش‌آموزان"
+            );
+
+        }
+
+
+        allStudents =
+            data.students || [];
+
+
+        document.getElementById(
+            "studentCount"
+        ).textContent =
+            allStudents.length +
+            " نفر";
+
+
+        renderStudents(
+            allStudents
+        );
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+
+        document.getElementById(
+            "studentTable"
+        ).innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="6"
+                    class="empty"
+                >
+                    اتصال به Backend برقرار نشد.
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+function renderStudents(students){
+
+    const table =
+        document.getElementById(
+            "studentTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    if(students.length === 0){
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="6"
+                    class="empty"
+                >
+                    هنوز دانش‌آموزی ثبت‌نام نکرده است.
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    students.forEach(
+        function(student){
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <td>
+
+                        <input
+                            type="checkbox"
+                            class="student-check student-item"
+                            value="${student.id}"
+                        >
+
+                    </td>
+
+                    <td>
+                        ${escapeHTML(student.name)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            student.nationalCode || "—"
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            student.phone || "—"
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            student.grade || "—"
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            student.className ||
+                            "بدون کلاس"
+                        )}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+}
+
+
+function searchStudents(){
+
+    const value =
+        document.getElementById(
+            "studentSearch"
+        ).value
+        .trim()
+        .toLowerCase();
+
+
+    const filtered =
+        allStudents.filter(
+            function(student){
+
+                const text =
+                    (
+                        student.name +
+                        " " +
+                        (student.nationalCode || "") +
+                        " " +
+                        (student.phone || "")
+                    ).toLowerCase();
+
+
+                return text.includes(
+                    value
+                );
+
+            }
+        );
+
+
+    renderStudents(
+        filtered
+    );
+
+}
+
+
+function toggleAllStudents(){
+
+    const checked =
+        document.getElementById(
+            "selectAll"
+        ).checked;
+
+
+    const checkboxes =
+        document.querySelectorAll(
+            ".student-item"
+        );
+
+
+    checkboxes.forEach(
+        function(box){
+
+            box.checked =
+                checked;
+
+        }
+    );
+
+}
+
+
+function getSelectedStudents(){
+
+    const boxes =
+        document.querySelectorAll(
+            ".student-item:checked"
+        );
+
+
+    return Array.from(
+        boxes
+    ).map(
+        function(box){
+
+            return Number(
+                box.value
+            );
+
+        }
+    );
+
+}
+
+
+/* ==============================
+   ساخت کلاس
+============================== */
+
+async function createClass(){
+
+    const name =
+        document.getElementById(
+            "className"
+        ).value.trim();
+
+
+    const grade =
+        document.getElementById(
+            "classGrade"
+        ).value.trim();
+
+
+    const field =
+        document.getElementById(
+            "classField"
+        ).value.trim();
+
+
+    const studentIds =
+        getSelectedStudents();
+
+
+    if(!name){
+
+        showClassMessage(
+            "نام کلاس را وارد کنید.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(studentIds.length === 0){
+
+        showClassMessage(
+            "حداقل یک دانش‌آموز را انتخاب کنید.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!teacher || !teacher.id){
+
+        showClassMessage(
+            "اطلاعات معلم پیدا نشد.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/classes",
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        teacherId:
+                            teacher.id,
+
+                        name:
+                            name,
+
+                        grade:
+                            grade,
+
+                        field:
+                            field,
+
+                        studentIds:
+                            studentIds
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !response.ok ||
+            !data.success
+        ){
+
+            throw new Error(
+                data.message ||
+                "ساخت کلاس ناموفق بود."
+            );
+
+        }
+
+
+        showClassMessage(
+            "کلاس با موفقیت ساخته شد ✅",
+            "success"
+        );
+
+
+        document.getElementById(
+            "className"
+        ).value = "";
+
+
+        document.getElementById(
+            "classGrade"
+        ).value = "";
+
+
+        document.getElementById(
+            "classField"
+        ).value = "";
+
+
+        document.getElementById(
+            "selectAll"
+        ).checked = false;
+
+
+        await loadStudents();
+
+        await loadClasses();
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+
+        showClassMessage(
+            error.message ||
+            "اتصال به Backend برقرار نشد.",
+            "error"
+        );
+
+    }
+
+}
+
+
+function showClassMessage(
+    text,
+    type
+){
+
+    const box =
+        document.getElementById(
+            "classMessage"
+        );
+
+
+    box.style.display =
+        "block";
+
+
+    box.className =
+        "message " +
+        type;
+
+
+    box.textContent =
+        text;
+
+}
+
+
+/* ==============================
+   کلاس‌های من
+============================== */
+
+async function loadClasses(){
+
+    if(!teacher || !teacher.id){
+
+        return;
+
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/classes/teacher/" +
+                teacher.id
+            );
+
+
+        const data =
+            await response.json();
+
+
+        const container =
+            document.getElementById(
+                "classesList"
+            );
+
+
+        if(
+            !data.success ||
+            !data.classes ||
+            data.classes.length === 0
+        ){
+
+            container.innerHTML = `
+
+                <div class="empty">
+                    هنوز کلاسی ساخته نشده است.
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML = "";
+
+
+        data.classes.forEach(
+            function(item){
+
+                container.innerHTML += `
+
+                    <div class="class-card">
+
+                        <div>
+
+                            <h3>
+                                ${escapeHTML(
+                                    item.name
+                                )}
+                            </h3>
+
+                            <p>
+
+                                پایه:
+                                ${escapeHTML(
+                                    item.grade || "—"
+                                )}
+
+                                |
+
+                                رشته:
+                                ${escapeHTML(
+                                    item.field || "—"
+                                )}
+
+                                |
+
+                                تعداد:
+                                ${item.studentCount || 0}
+                                نفر
+
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            onclick="viewClass(${item.id})"
+                        >
+                            👁 مشاهده
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* ==============================
+   مشاهده کلاس
+============================== */
+
+async function viewClass(classId){
+
+    if(!classId){
+
+        return;
+
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/classes/" +
+                classId +
+                "/students"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !response.ok ||
+            !data.success
+        ){
+
+            alert(
+                data.message ||
+                "دریافت اطلاعات کلاس ناموفق بود."
+            );
+
+            return;
+
+        }
+
+
+        /*
+           مهم:
+           کلاس انتخاب‌شده را ذخیره می‌کنیم
+        */
+
+        selectedClassId =
+            Number(classId);
+
+
+        selectedClassStudents =
+            data.students || [];
+
+
+        localStorage.setItem(
+            "selectedTeacherClassId",
+            String(selectedClassId)
+        );
+
+
+        /*
+           نام کلاس را از لیست کلاس‌ها پیدا می‌کنیم
+        */
+
+        const classCards =
+            document.querySelectorAll(
+                ".class-card h3"
+            );
+
+
+        classCards.forEach(
+            function(title){
+
+                if(
+                    title.textContent.trim()
+                ){
+
+                    const text =
+                        title.textContent.trim();
+
+                    if(
+                        !selectedClassName
+                    ){
+
+                        selectedClassName =
+                            text;
+                    }
+
+                }
+
+            }
+        );
+
+
+        /*
+           عنوان کلاس
+        */
+
+        document.getElementById(
+            "selectedClassTitle"
+        ).textContent =
+            "📚 مدیریت کلاس";
+
+
+        const container =
+            document.getElementById(
+                "classStudentsList"
+            );
+
+
+        container.innerHTML = "";
+
+
+        if(
+            selectedClassStudents.length === 0
+        ){
+
+            container.innerHTML = `
+
+                <div class="empty">
+
+                    این کلاس دانش‌آموزی ندارد.
+
+                </div>
+
+            `;
+
+        }
+        else{
+
+            selectedClassStudents.forEach(
+                function(student,index){
+
+                    container.innerHTML += `
+
+                        <div
+                            style="
+                                display:flex;
+                                align-items:center;
+                                justify-content:space-between;
+                                padding:16px;
+                                margin-bottom:10px;
+                                background:#f8fbff;
+                                border:1px solid #e5eaf2;
+                                border-radius:14px;
+                            "
+                        >
+
+                            <strong>
+
+                                ${index + 1}.
+                                ${escapeHTML(
+                                    student.name
+                                )}
+
+                            </strong>
+
+                            <span
+                                style="
+                                    color:#667085;
+                                    font-size:13px;
+                                "
+                            >
+
+                                ${escapeHTML(
+                                    student.grade || "—"
+                                )}
+
+                            </span>
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+        }
+
+
+        showSection(
+            "classDetails"
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "اتصال به Backend برقرار نشد."
+        );
+
+    }
+
+}
+
+
+/* ==============================
+   دریافت دوباره کلاس انتخاب‌شده
+============================== */
+
+async function reloadSelectedClass(){
+
+    if(!selectedClassId){
+
+        return false;
+
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/classes/" +
+                selectedClassId +
+                "/students"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !response.ok ||
+            !data.success
+        ){
+
+            return false;
+
+        }
+
+
+        selectedClassStudents =
+            data.students || [];
+
+
+        return true;
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        return false;
+
+    }
+
+}
+
+
+/* ==============================
+   ثبت تاریخ حضور و غیاب
+============================== */
+
+function registerAttendanceDate(){
+
+    const oldDate =
+        localStorage.getItem(
+            "attendanceDate"
+        ) || "";
+
+
+    const date =
+        prompt(
+            "تاریخ حضور و غیاب را وارد کنید:",
+            oldDate ||
+            new Date().toLocaleDateString("fa-IR")
+        );
+
+
+    if(!date){
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "attendanceDate",
+        date.trim()
+    );
+
+
+    alert(
+        "تاریخ " +
+        date.trim() +
+        " با موفقیت ثبت شد ✅"
+    );
+
+
+    /*
+       اگر پنل حضور و غیاب باز باشد،
+       همان لحظه تاریخ را تازه می‌کنیم.
+    */
+
+    if(
+        document.getElementById(
+            "attendance"
+        ).style.display === "block"
+    ){
+
+        openClassAttendance();
+
+    }
+
+}
+
+
+/* ==============================
+   باز کردن حضور و غیاب از منوی اصلی
+============================== */
+
+async function openAttendanceFromMenu(){
+
+    /*
+       اگر کلاس قبلاً انتخاب نشده
+    */
+
+    if(!selectedClassId){
+
+        alert(
+            "ابتدا از بخش «کلاس‌های من» یک کلاس را انتخاب کنید."
+        );
+
+        showSection(
+            "myClasses"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       کلاس انتخاب شده را دوباره از Backend می‌گیریم.
+       بنابراین selectedClassStudents خالی نمی‌ماند.
+    */
+
+    const loaded =
+        await reloadSelectedClass();
+
+
+    if(!loaded){
+
+        alert(
+            "اطلاعات کلاس انتخاب‌شده دریافت نشد. دوباره کلاس را از «کلاس‌های من» انتخاب کنید."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       حالا حضور و غیاب را باز می‌کنیم
+    */
+
+    openClassAttendance();
+
+}
+
+
+/* ==============================
+   حضور و غیاب کلاس
+============================== */
+
+async function openClassAttendance() {
+
+    if (!selectedClassId) {
+
+        alert(
+            "ابتدا از بخش «کلاس‌های من» یک کلاس را انتخاب کنید."
+        );
+
+        showSection("myClasses");
+
+        return;
+    }
+
+    // دریافت دوباره دانش‌آموزان کلاس
+    const loaded = await reloadSelectedClass();
+
+    if (!loaded) {
+
+        alert(
+            "دانش‌آموزان کلاس دریافت نشدند."
+        );
+
+        return;
+    }
+
+    const panel =
+        document.getElementById("attendance");
+
+    const container =
+        document.getElementById("attendanceClassStudents");
+
+    document.querySelectorAll(".panel").forEach(function(item) {
+        item.style.display = "none";
+    });
+
+    panel.style.display = "block";
+
+    container.innerHTML =
+        '<div class="empty">در حال دریافت وضعیت حضور و غیاب...</div>';
+
+    // تاریخ انتخاب‌شده
+    const attendanceDate =
+        localStorage.getItem("attendanceDate") || "";
+
+    if (!attendanceDate) {
+
+        container.innerHTML = `
+            <div class="empty">
+                ابتدا روی «📅 ثبت تاریخ» بزنید و تاریخ حضور و غیاب را مشخص کنید.
+            </div>
+        `;
+
+        const dateButton = document.createElement("button");
+
+        dateButton.className = "save-btn";
+
+        dateButton.style.marginTop = "15px";
+
+        dateButton.textContent = "📅 ثبت تاریخ";
+
+        dateButton.onclick = registerAttendanceDate;
+
+        container.appendChild(dateButton);
+
+        return;
+    }
+
+    // ==========================================
+    // دریافت وضعیت‌های ذخیره‌شده از Backend
+    // ==========================================
+
+    let savedAttendance = [];
+
+    try {
+
+        const response = await fetch(
+            API_URL +
+            "/api/teacher/attendance?" +
+            "teacherId=" +
+            encodeURIComponent(teacher.id) +
+            "&classId=" +
+            encodeURIComponent(selectedClassId) +
+            "&date=" +
+            encodeURIComponent(attendanceDate)
+        );
+
+        const data = await response.json();
+
+        console.log(
+            "SAVED ATTENDANCE:",
+            data
+        );
+
+        if (response.ok && data.success) {
+
+            savedAttendance =
+                data.records || [];
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "GET SAVED ATTENDANCE ERROR:",
+            error
+        );
+
+    }
+
+    // ==========================================
+    // تبدیل وضعیت‌های ذخیره‌شده به Map
+    // ==========================================
+
+    const attendanceMap = new Map();
+
+    savedAttendance.forEach(function(record) {
+
+        attendanceMap.set(
+      Number(record.studentId),
+     record.status
+      );
+
+    });
+
+    // ==========================================
+    // پاک کردن صفحه
+    // ==========================================
+
+    container.innerHTML = "";
+
+    // ==========================================
+    // کلاس
+    // ==========================================
+
+    const classBox =
+        document.createElement("div");
+
+    classBox.className =
+        "selected-class-box";
+
+    classBox.innerHTML = `
+        🏫 کلاس انتخاب‌شده:
+        ${escapeHTML(
+            selectedClassName ||
+            "کلاس انتخاب‌شده"
+        )}
+    `;
+
+    container.appendChild(classBox);
+
+    // ==========================================
+    // تاریخ
+    // ==========================================
+
+    const dateBox =
+        document.createElement("div");
+
+    dateBox.className =
+        "attendance-date-box";
+
+    dateBox.innerHTML = `
+        <span>
+            📅 تاریخ حضور و غیاب:
+            <strong>
+                ${escapeHTML(attendanceDate)}
+            </strong>
+        </span>
+
+        <button
+            onclick="registerAttendanceDate()"
+        >
+            📅 تغییر تاریخ
+        </button>
+    `;
+
+    container.appendChild(dateBox);
+
+    // ==========================================
+    // اگر دانش‌آموزی وجود ندارد
+    // ==========================================
+
+    if (
+        !selectedClassStudents ||
+        selectedClassStudents.length === 0
+    ) {
+
+        const empty =
+            document.createElement("div");
+
+        empty.className =
+            "empty";
+
+        empty.textContent =
+            "دانش‌آموزی در این کلاس وجود ندارد.";
+
+        container.appendChild(empty);
+
+        return;
+    }
+
+    // ==========================================
+    // دانش‌آموزان
+    // ==========================================
+
+    selectedClassStudents.forEach(function(student) {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "class-card";
+
+        // وضعیت ذخیره‌شده این دانش‌آموز
+        const savedStatus =
+            attendanceMap.get(
+                Number(student.id)
+            ) || "present";
+
+        card.innerHTML = `
+
+            <div>
+
+                <h3>
+                    👨‍🎓
+                    ${escapeHTML(
+                        student.name
+                    )}
+                </h3>
+
+                <p>
+                    کد ملی:
+                    ${escapeHTML(
+                        student.nationalCode || "—"
+                    )}
+                </p>
+
+            </div>
+
+            <select
+                id="attendance-${student.id}"
+                style="
+                    padding:10px;
+                    border:1px solid #dce2eb;
+                    border-radius:10px;
+                "
+            >
+
+                <option
+                    value="present"
+                    ${savedStatus === "present" ? "selected" : ""}
+                >
+                    حاضر
+                </option>
+
+                <option
+                    value="absent"
+                    ${savedStatus === "absent" ? "selected" : ""}
+                >
+                    غایب
+                </option>
+
+                <option
+                    value="late"
+                    ${savedStatus === "late" ? "selected" : ""}
+                >
+                    تأخیر
+                </option>
+
+            </select>
+
+        `;
+
+        container.appendChild(card);
+
+    });
+
+    // ==========================================
+    // دکمه‌ها
+    // ==========================================
+
+    const buttons =
+        document.createElement("div");
+
+    buttons.style.cssText = `
+        display:flex;
+        gap:12px;
+        flex-wrap:wrap;
+        margin-top:15px;
+    `;
+
+    buttons.innerHTML = `
+
+        <button
+            class="save-btn"
+            onclick="saveAttendance()"
+            style="
+                background:linear-gradient(
+                    135deg,
+                    #16a34a,
+                    #15803d
+                );
+            "
+        >
+            💾 ذخیره حضور و غیاب
+        </button>
+
+        <button
+            class="save-btn"
+            onclick="registerAttendanceDate()"
+            style="
+                background:linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1e40af
+                );
+            "
+        >
+            📅 تغییر تاریخ
+        </button>
+
+    `;
+
+    container.appendChild(buttons);
+
+    panel.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+
+/* ==============================
+   نمرات
+============================== */
+
+async function openClassGrades(){
+
+    if(!selectedClassId){
+
+        alert(
+            "ابتدا یک کلاس را انتخاب کنید."
+        );
+
+        return;
+
+    }
+
+
+    await reloadSelectedClass();
+
+
+    const panel =
+        document.getElementById(
+            "grades"
+        );
+
+
+    document.querySelectorAll(
+        ".panel"
+    ).forEach(
+        function(item){
+
+            item.style.display =
+                "none";
+
+        }
+    );
+
+
+    panel.style.display =
+        "block";
+
+
+    const container =
+        document.getElementById(
+            "gradesClassStudents"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if(
+        !selectedClassStudents ||
+        selectedClassStudents.length === 0
+    ){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                دانش‌آموزی در این کلاس وجود ندارد.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    selectedClassStudents.forEach(
+        function(student){
+
+            container.innerHTML += `
+
+                <div class="class-card">
+
+                    <div>
+
+                        <h3>
+
+                            👨‍🎓
+                            ${escapeHTML(
+                                student.name
+                            )}
+
+                        </h3>
+
+                        <p>
+
+                            کد ملی:
+                            ${escapeHTML(
+                                student.nationalCode ||
+                                "—"
+                            )}
+
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        onclick="registerStudentGrade(
+                            ${student.id}
+                        )"
+                    >
+
+                        📝 ثبت نمره
+
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    panel.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function registerStudentGrade(
+    studentId
+){
+
+    const student =
+        selectedClassStudents.find(
+            function(item){
+
+                return item.id === studentId;
+
+            }
+        );
+
+
+    if(!student){
+
+        return;
+
+    }
+
+
+    const grade =
+        prompt(
+            "نمره " +
+            student.name +
+            " را وارد کنید:"
+        );
+
+
+    if(grade === null){
+
+        return;
+
+    }
+
+
+    const numericGrade =
+        Number(grade);
+
+
+    if(
+        Number.isNaN(numericGrade) ||
+        numericGrade < 0 ||
+        numericGrade > 20
+    ){
+
+        alert(
+            "نمره باید بین ۰ تا ۲۰ باشد."
+        );
+
+        return;
+
+    }
+
+
+    const examName =
+        prompt(
+            "نام امتحان را وارد کنید:"
+        );
+
+
+    if(!examName){
+
+        return;
+
+    }
+
+
+    const subject =
+        teacher.subject ||
+        "عمومی";
+
+
+    const examDate =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+    saveStudentGrade(
+        student,
+        examName,
+        subject,
+        numericGrade,
+        examDate
+    );
+
+}
+
+
+async function saveStudentGrade(
+    student,
+    examName,
+    subject,
+    grade,
+    examDate
+){
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/teacher/grades",
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        nationalCode:
+                            student.nationalCode,
+
+                        examName:
+                            examName,
+
+                        subject:
+                            subject,
+
+                        grade:
+                            grade,
+
+                        examDate:
+                            examDate
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !response.ok ||
+            !data.success
+        ){
+
+            alert(
+                data.message ||
+                "ثبت نمره ناموفق بود."
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            "نمره با موفقیت ثبت شد ✅"
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "اتصال به Backend برقرار نشد."
+        );
+
+    }
+
+}
+
+
+/* ==============================
+   ذخیره حضور و غیاب
+============================== */
+
+async function saveAttendance(){
+
+    /*
+       حتماً باید کلاس انتخاب شده باشد
+    */
+const savedDate =
+    localStorage.getItem("attendanceDate") || "";
+    if(!selectedClassId){
+
+        alert(
+            "ابتدا از بخش «کلاس‌های من» یک کلاس را انتخاب کنید."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       اگر لیست دانش‌آموزها خالی است،
+       دوباره از سرور دریافت کن
+    */
+
+    if(
+        !selectedClassStudents ||
+        selectedClassStudents.length === 0
+    ){
+
+        const loaded =
+            await reloadSelectedClass();
+
+
+        if(!loaded){
+
+            alert(
+                "دانش‌آموزان کلاس دریافت نشدند."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    /*
+       تاریخ انتخاب‌شده
+    */
+
+    const attendanceDate =
+        localStorage.getItem(
+            "attendanceDate"
+        );
+
+
+    if(!attendanceDate){
+
+        alert(
+            "ابتدا روی «📅 ثبت تاریخ» بزنید و تاریخ را مشخص کنید."
+        );
+
+        return;
+
+    }
+
+
+    const attendance = [];
+
+
+    selectedClassStudents.forEach(
+        function(student){
+
+            const select =
+                document.getElementById(
+                    "attendance-" +
+                    student.id
+                );
+
+
+            if(!select){
+
+                return;
+
+            }
+
+
+            attendance.push({
+
+                studentId:
+                    student.id,
+
+                nationalCode:
+                    student.nationalCode ||
+                    "",
+
+                status:
+                    select.value
+
+            });
+
+        }
+    );
+
+
+    if(
+        attendance.length === 0
+    ){
+
+        alert(
+            "اطلاعات حضور و غیاب پیدا نشد."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/api/teacher/attendance",
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        teacherId:
+                            teacher.id,
+
+                        classId:
+                            selectedClassId,
+
+                        date:
+                            attendanceDate,
+
+                        attendance:
+                            attendance
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !response.ok ||
+            !data.success
+        ){
+
+            throw new Error(
+                data.message ||
+                "ذخیره حضور و غیاب ناموفق بود."
+            );
+
+        }
+
+
+alert(
+ "حضور و غیاب برای تاریخ " +
+    attendanceDate +
+    " با موفقیت ذخیره شد ✅"
+);
+
+// رفتن به صفحه تغییرات همان تاریخ
+openAttendanceChanges();
+
+    }
+    catch(error){
+
+        console.error(
+            "Attendance Error:",
+            error
+        );
+
+
+        alert(
+            error.message ||
+            "خطا در ذخیره حضور و غیاب."
+        );
+
+    }
+
+}
+
+
+/* ==============================
+   امنیت متن
+============================== */
+
+function escapeHTML(value){
+
+    return String(
+        value || ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* ==============================
+   خروج
+============================== */
+
+function logout(){
+
+    if(
+        confirm(
+            "آیا می‌خواهید از پنل خارج شوید؟"
+        )
+    ){
+
+        localStorage.removeItem(
+            "teacherLoggedIn"
+        );
+
+        localStorage.removeItem(
+            "currentTeacher"
+        );
+
+        localStorage.removeItem(
+            "teacher.id"
+        );
+
+        localStorage.removeItem(
+            "loggedIn"
+        );
+
+        localStorage.removeItem(
+            "selectedTeacherClassId"
+        );
+
+        localStorage.removeItem(
+            "selectedTeacherClassName"
+        );
+
+        localStorage.removeItem(
+            "attendanceDate"
+        );
+
+
+        window.location.href =
+            "login.html";
+
+    }
+
+}
+
+
+/* ==============================
+   شروع
+============================== */
+
+showSection(
+    "students"
+);
+
+loadStudents();
+
+loadClasses();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,529 @@
+```html
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>برنامه هفتگی | مدرسه شریعتی</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Tahoma,Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:25px;
+    color:#172033;
+
+    background:
+        radial-gradient(circle at 10% 10%,rgba(37,99,235,.18),transparent 28%),
+        radial-gradient(circle at 90% 90%,rgba(79,70,229,.15),transparent 28%),
+        linear-gradient(135deg,#eef4ff,#f8faff);
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+/* Header */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+
+    padding:22px 25px;
+    margin-bottom:25px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,.9);
+
+    box-shadow:0 20px 60px rgba(20,40,80,.12);
+}
+
+.school{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.school-icon{
+    width:55px;
+    height:55px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:17px;
+
+    color:white;
+    font-size:27px;
+
+    background:linear-gradient(135deg,#2563eb,#173b7a);
+}
+
+.school h1{
+    font-size:21px;
+    margin-bottom:5px;
+}
+
+.school p{
+    color:#667085;
+    font-size:12px;
+}
+
+.back{
+    padding:12px 18px;
+    border-radius:13px;
+
+    text-decoration:none;
+    color:#2563eb;
+
+    background:#edf3ff;
+
+    font-size:13px;
+    transition:.3s;
+}
+
+.back:hover{
+    transform:translateY(-2px);
+}
+
+/* Title */
+
+.title{
+    text-align:center;
+    margin:30px 0;
+}
+
+.title h2{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.title p{
+    color:#667085;
+    font-size:13px;
+}
+
+/* Schedule */
+
+.schedule-box{
+    padding:20px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,.9);
+
+    box-shadow:0 20px 60px rgba(20,40,80,.12);
+
+    overflow-x:auto;
+}
+
+.schedule{
+    width:100%;
+    min-width:800px;
+    border-collapse:separate;
+    border-spacing:8px;
+}
+
+.schedule th{
+    padding:16px;
+
+    border-radius:14px;
+
+    color:white;
+
+    background:linear-gradient(135deg,#2563eb,#173b7a);
+
+    font-size:14px;
+}
+
+.schedule td{
+    min-width:130px;
+    height:110px;
+
+    padding:12px;
+
+    text-align:center;
+    vertical-align:middle;
+
+    border-radius:15px;
+
+    background:#f8faff;
+
+    border:1px solid #e3e9f3;
+
+    transition:.3s;
+}
+
+.schedule td:hover{
+    transform:translateY(-3px);
+
+    background:#edf3ff;
+
+    box-shadow:0 10px 25px rgba(37,99,235,.1);
+}
+
+.time{
+    font-weight:bold;
+    color:#2563eb;
+    background:#edf3ff !important;
+}
+
+.subject{
+    display:block;
+
+    font-weight:bold;
+    font-size:14px;
+
+    margin-bottom:8px;
+}
+
+.teacher{
+    display:block;
+
+    color:#667085;
+    font-size:11px;
+}
+
+.room{
+    display:block;
+
+    margin-top:7px;
+
+    color:#98a2b3;
+    font-size:10px;
+}
+
+/* Colors */
+
+.math{
+    border-right:4px solid #2563eb !important;
+}
+
+.science{
+    border-right:4px solid #16a34a !important;
+}
+
+.persian{
+    border-right:4px solid #9333ea !important;
+}
+
+.english{
+    border-right:4px solid #f59e0b !important;
+}
+
+.physical{
+    border-right:4px solid #ef4444 !important;
+}
+
+.empty{
+    color:#98a2b3;
+}
+
+/* Note */
+
+.note{
+    margin-top:25px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    color:#344054;
+
+    background:rgba(255,255,255,.7);
+
+    border:1px solid #e3e9f3;
+}
+
+.note h3{
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+.note p{
+    color:#667085;
+    font-size:13px;
+    line-height:2;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    body{
+        padding:12px;
+    }
+
+    .header{
+        flex-direction:column;
+        align-items:stretch;
+        text-align:center;
+    }
+
+    .school{
+        justify-content:center;
+    }
+
+    .back{
+        text-align:center;
+    }
+
+    .title h2{
+        font-size:23px;
+    }
+
+    .schedule-box{
+        padding:10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div class="school">
+
+            <div class="school-icon">
+                🏫
+            </div>
+
+            <div>
+                <h1>مدرسه شریعتی</h1>
+                <p>سامانه دانش‌آموزی</p>
+            </div>
+
+        </div>
+
+        <a href="about.html" class="back">
+            ← بازگشت به پنل
+        </a>
+
+    </div>
+
+
+    <div class="title">
+
+        <h2>
+            📚 برنامه هفتگی کلاس
+        </h2>
+
+        <p>
+            برنامه درسی هفتگی دانش‌آموز
+        </p>
+
+    </div>
+
+
+    <div class="schedule-box">
+
+        <table class="schedule">
+
+            <thead>
+
+                <tr>
+                    <th>ساعت</th>
+                    <th>شنبه</th>
+                    <th>یکشنبه</th>
+                    <th>دوشنبه</th>
+                    <th>سه‌شنبه</th>
+                    <th>چهارشنبه</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+                    <td class="time">
+                        ۸:۰۰<br>تا<br>۹:۳۰
+                    </td>
+
+                    <td class="math">
+                        <span class="subject">ریاضی</span>
+                        <span class="teacher">آقای احمدی</span>
+                        <span class="room">کلاس ۱۰۱</span>
+                    </td>
+
+                    <td class="persian">
+                        <span class="subject">فارسی</span>
+                        <span class="teacher">خانم رضایی</span>
+                        <span class="room">کلاس ۱۰۱</span>
+                    </td>
+
+                    <td class="science">
+                        <span class="subject">علوم</span>
+                        <span class="teacher">آقای کریمی</span>
+                        <span class="room">آزمایشگاه</span>
+                    </td>
+
+                    <td class="english">
+                        <span class="subject">زبان انگلیسی</span>
+                        <span class="teacher">خانم محمدی</span>
+                        <span class="room">کلاس ۱۰۱</span>
+                    </td>
+
+                    <td class="math">
+                        <span class="subject">ریاضی</span>
+                        <span class="teacher">آقای احمدی</span>
+                        <span class="room">کلاس ۱۰۱</span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="time">
+                        ۹:۴۵<br>تا<br>۱۱:۱۵
+                    </td>
+
+                    <td class="science">
+                        <span class="subject">علوم</span>
+                        <span class="teacher">آقای کریمی</span>
+                        <span class="room">آزمایشگاه</span>
+                    </td>
+
+                    <td class="math">
+                        <span class="subject">ریاضی</span>
+                        <span class="teacher">آقای احمدی</span>
+                        <span class="room">کلاس ۱۰۱</span>
+                    </td>
+
+                    <td class="persian">
+                        <span class="subject">فارسی</span>
+                        <span class="teacher">خانم رضایی</span>
+                        <span class="room">کلاس ۱۰۱</span>
+                    </td>
+
+                    <td class="physical">
+                        <span class="subject">ورزش</span>
+                        <span class="teacher">آقای حسینی</span>
+                        <span class="room">سالن ورزش</span>
+                    </td>
+
+                    <td class="science">
+                        <span class="subject">علوم</span>
+                        <span class="teacher">آقای کریمی</span>
+                        <span class="room">آزمایشگاه</span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="time">
+                        ۱۱:۳۰<br>تا<br>۱۳:۰۰
+                    </td>
+
+                    <td class="english">
+                        <span class="subject">زبان انگلیسی</span>
+                        <span class="teacher">خانم محمدی</span>
+                        <span class="room">کلاس ۱۰۱</span>
+                    </td>
+
+                    <td class="science">
+                        <span class="subject">علوم</span>
+                        <span class="teacher">آقای کریمی</span>
+                        <span class="room">آزمایشگاه</span>
+                    </td>
+
+                    <td class="english">
+                        <span class="subject">زبان انگلیسی</span>
+                        <span class="teacher">خانم محمدی</span>
+                        <span class="room">کلاس ۱۰۱</span>
+                    </td>
+
+                    <td class="persian">
+                        <span class="subject">فارسی</span>
+                        <span class="teacher">خانم رضایی</span>
+                        <span class="room">کلاس ۱۰۱</span>
+                    </td>
+
+                    <td class="physical">
+                        <span class="subject">ورزش</span>
+                        <span class="teacher">آقای حسینی</span>
+                        <span class="room">سالن ورزش</span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="time">
+                        ۱۳:۰۰<br>تا<br>۱۴:۰۰
+                    </td>
+
+                    <td class="empty">
+                        استراحت 🍽️
+                    </td>
+
+                    <td class="empty">
+                        استراحت 🍽️
+                    </td>
+
+                    <td class="empty">
+                        استراحت 🍽️
+                    </td>
+
+                    <td class="empty">
+                        استراحت 🍽️
+                    </td>
+
+                    <td class="empty">
+                        استراحت 🍽️
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="note">
+
+        <h3>
+            📌 نکته
+        </h3>
+
+        <p>
+            برنامه بالا نمونه است و می‌توانید نام درس‌ها،
+            معلم‌ها، ساعت‌ها و کلاس‌ها را مطابق برنامه واقعی
+            مدرسه شریعتی تغییر دهید.
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+```
