@@ -1,0 +1,521 @@
+```html
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>معلمان | مدرسه شریعتی</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Tahoma,Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:25px;
+    color:#172033;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(37,99,235,.18),transparent 28%),
+        radial-gradient(circle at 90% 90%,rgba(79,70,229,.15),transparent 28%),
+        linear-gradient(135deg,#eef4ff,#f8faff);
+}
+
+.container{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+}
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:22px 25px;
+    margin-bottom:30px;
+    border-radius:25px;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(25px);
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:0 20px 60px rgba(20,40,80,.12);
+}
+
+.school{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.school-icon{
+    width:55px;
+    height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:17px;
+    color:white;
+    font-size:27px;
+    background:linear-gradient(135deg,#2563eb,#173b7a);
+}
+
+.school h1{
+    font-size:21px;
+    margin-bottom:5px;
+}
+
+.school p{
+    color:#667085;
+    font-size:12px;
+}
+
+.back{
+    padding:12px 18px;
+    border-radius:13px;
+    text-decoration:none;
+    color:#2563eb;
+    background:#edf3ff;
+    font-size:13px;
+    transition:.3s;
+}
+
+.back:hover{
+    transform:translateY(-2px);
+    background:#dfeaff;
+}
+
+.title{
+    text-align:center;
+    margin:30px 0;
+}
+
+.title h2{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.title p{
+    color:#667085;
+    font-size:13px;
+}
+
+/* کارت معلمان */
+
+.teachers{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.teacher{
+    position:relative;
+    padding:25px;
+    text-align:center;
+    border-radius:25px;
+    background:rgba(255,255,255,.78);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.95);
+    box-shadow:0 20px 50px rgba(20,40,80,.1);
+    transition:.4s;
+    overflow:hidden;
+}
+
+.teacher:hover{
+    transform:translateY(-8px);
+    box-shadow:0 30px 65px rgba(20,40,80,.17);
+}
+
+.teacher::before{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    background:rgba(37,99,235,.08);
+    top:-70px;
+    left:-60px;
+}
+
+.teacher-avatar{
+    width:100px;
+    height:100px;
+    margin:0 auto 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    font-size:43px;
+    background:linear-gradient(135deg,#edf3ff,#dce8ff);
+    border:5px solid white;
+    box-shadow:0 10px 30px rgba(37,99,235,.13);
+}
+
+.teacher h3{
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.subject{
+    display:inline-block;
+    padding:7px 13px;
+    border-radius:20px;
+    color:#2563eb;
+    background:#edf3ff;
+    font-size:11px;
+    margin-bottom:15px;
+}
+
+.teacher p{
+    color:#667085;
+    font-size:12px;
+    line-height:2;
+}
+
+.teacher-info{
+    margin-top:18px;
+    padding-top:15px;
+    border-top:1px solid #e8edf5;
+    color:#98a2b3;
+    font-size:11px;
+}
+
+/* مدیر */
+
+.principal{
+    margin-bottom:25px;
+    padding:30px;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    border-radius:27px;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#173b7a);
+    box-shadow:0 25px 60px rgba(37,99,235,.22);
+}
+
+.principal-avatar{
+    width:90px;
+    height:90px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:rgba(255,255,255,.14);
+    font-size:42px;
+}
+
+.principal h2{
+    margin-bottom:8px;
+    font-size:21px;
+}
+
+.principal p{
+    color:#dce7ff;
+    font-size:13px;
+    line-height:2;
+}
+
+.principal-role{
+    display:inline-block;
+    margin-bottom:10px;
+    padding:6px 12px;
+    border-radius:20px;
+    background:rgba(255,255,255,.13);
+    font-size:11px;
+}
+
+/* فوتر */
+
+.footer{
+    text-align:center;
+    padding:30px 10px 10px;
+    color:#667085;
+    font-size:12px;
+}
+
+/* موبایل */
+
+@media(max-width:850px){
+
+    .teachers{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    body{
+        padding:12px;
+    }
+
+    .header{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .school{
+        justify-content:center;
+    }
+
+    .back{
+        width:100%;
+        text-align:center;
+    }
+
+    .title h2{
+        font-size:23px;
+    }
+
+    .teachers{
+        grid-template-columns:1fr;
+    }
+
+    .principal{
+        flex-direction:column;
+        text-align:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- سربرگ -->
+
+    <div class="header">
+
+        <div class="school">
+
+            <div class="school-icon">
+                🏫
+            </div>
+
+            <div>
+                <h1>مدرسه شریعتی</h1>
+                <p>سامانه دانش‌آموزی</p>
+            </div>
+
+        </div>
+
+        <a href="about.html" class="back">
+            ← بازگشت به پنل
+        </a>
+
+    </div>
+
+
+    <!-- عنوان -->
+
+    <div class="title">
+
+        <h2>
+            👨‍🏫 کادر آموزشی مدرسه
+        </h2>
+
+        <p>
+            معرفی مدیر و معلمان مدرسه شریعتی
+        </p>
+
+    </div>
+
+
+    <!-- مدیر -->
+
+    <div class="principal">
+
+        <div class="principal-avatar">
+            👨‍💼
+        </div>
+
+        <div>
+
+            <span class="principal-role">
+                مدیر مدرسه
+            </span>
+
+            <h2>
+                آقای احمد رضایی
+            </h2>
+
+            <p>
+                مدیریت مدرسه شریعتی و نظارت بر امور آموزشی،
+                پرورشی و اجرایی مدرسه.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- معلمان -->
+
+    <div class="teachers">
+
+        <div class="teacher">
+
+            <div class="teacher-avatar">
+                👨‍🏫
+            </div>
+
+            <h3>
+                آقای محمد احمدی
+            </h3>
+
+            <span class="subject">
+                ریاضی
+            </span>
+
+            <p>
+                دبیر ریاضی و مسئول آموزش ریاضی پایه‌های مدرسه.
+            </p>
+
+            <div class="teacher-info">
+                ⏰ ساعات حضور: شنبه تا چهارشنبه
+            </div>
+
+        </div>
+
+
+        <div class="teacher">
+
+            <div class="teacher-avatar">
+                👩‍🏫
+            </div>
+
+            <h3>
+                خانم سارا محمدی
+            </h3>
+
+            <span class="subject">
+                علوم
+            </span>
+
+            <p>
+                دبیر علوم تجربی و مسئول آزمایشگاه مدرسه.
+            </p>
+
+            <div class="teacher-info">
+                ⏰ ساعات حضور: شنبه تا چهارشنبه
+            </div>
+
+        </div>
+
+
+        <div class="teacher">
+
+            <div class="teacher-avatar">
+                👨‍🏫
+            </div>
+
+            <h3>
+                آقای علی کریمی
+            </h3>
+
+            <span class="subject">
+                فارسی
+            </span>
+
+            <p>
+                دبیر زبان و ادبیات فارسی و فعالیت‌های فرهنگی.
+            </p>
+
+            <div class="teacher-info">
+                ⏰ ساعات حضور: شنبه تا چهارشنبه
+            </div>
+
+        </div>
+
+
+        <div class="teacher">
+
+            <div class="teacher-avatar">
+                👩‍🏫
+            </div>
+
+            <h3>
+                خانم مریم حسینی
+            </h3>
+
+            <span class="subject">
+                زبان انگلیسی
+            </span>
+
+            <p>
+                دبیر زبان انگلیسی و مسئول فعالیت‌های زبان‌آموزی.
+            </p>
+
+            <div class="teacher-info">
+                ⏰ ساعات حضور: شنبه تا چهارشنبه
+            </div>
+
+        </div>
+
+
+        <div class="teacher">
+
+            <div class="teacher-avatar">
+                👨‍🏫
+            </div>
+
+            <h3>
+                آقای رضا موسوی
+            </h3>
+
+            <span class="subject">
+                مطالعات اجتماعی
+            </span>
+
+            <p>
+                دبیر مطالعات اجتماعی و مسئول فعالیت‌های پژوهشی.
+            </p>
+
+            <div class="teacher-info">
+                ⏰ ساعات حضور: شنبه تا چهارشنبه
+            </div>
+
+        </div>
+
+
+        <div class="teacher">
+
+            <div class="teacher-avatar">
+                👩‍🏫
+            </div>
+
+            <h3>
+                خانم نرگس اکبری
+            </h3>
+
+            <span class="subject">
+                هنر و پرورشی
+            </span>
+
+            <p>
+                مسئول فعالیت‌های هنری، فرهنگی و پرورشی مدرسه.
+            </p>
+
+            <div class="teacher-info">
+                ⏰ ساعات حضور: شنبه تا چهارشنبه
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        © ۱۴۰۵ مدرسه شریعتی | تمامی حقوق محفوظ است
+    </div>
+
+</div>
+
+</body>
+</html>
+```
